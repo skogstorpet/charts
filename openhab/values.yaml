@@ -1,0 +1,35 @@
+# Default values for openhab.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+replicaCount: 1
+
+image:
+  repository: openhab/openhab
+  pullPolicy: IfNotPresent
+  # Overrides the image tag whose default is the chart appVersion.
+  tag: "3.1.0"
+
+env:
+  timezone: "UTC"
+  OPENHAB_CONF: "/data/config"
+  OPENHAB_USERDATA: "/data/userdata"
+  USER_ID: "1000"
+  GROUP_ID: "1000"
+  OPENHAB_HTTP_PORT: "8080"
+  OPENHAB_HTTPS_PORT: "8443"
+
+
+service:
+  main: 
+    ports:
+      http: 80
+
+ingress:
+  main:
+    enabled: false
+  
+persistence:
+  data:
+    enabled: false
+    mountPath: /data
